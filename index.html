@@ -46,6 +46,12 @@
       --sp7: 7rem;
 
       --out: cubic-bezier(0, 0, 0.2, 1);
+
+      /* Dark form section */
+      --night:      #2C0A0A;
+      --on-night:   #F0E8D0;
+      --on-night-2: rgba(240,232,208,0.55);
+      --on-night-3: rgba(240,232,208,0.28);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -139,7 +145,7 @@
     .name-a {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(4.5rem, 21vw, 17rem);
+      font-size: clamp(4rem, 19vw, 17rem);
       line-height: 0.83;
       letter-spacing: -0.025em;
       color: var(--ink);
@@ -168,7 +174,7 @@
     .name-b {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(4.5rem, 21vw, 17rem);
+      font-size: clamp(4rem, 19vw, 17rem);
       line-height: 0.83;
       letter-spacing: -0.025em;
       color: var(--ink);
@@ -179,9 +185,9 @@
 
     /* Cover foot — date left, scroll invitation right */
     .cover-foot {
-      padding: var(--sp3) var(--m) var(--sp5);
+      padding: var(--sp3) var(--m) calc(var(--sp5) + env(safe-area-inset-bottom, 0px));
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
       border-top: 1px solid var(--ink-ghost);
       opacity: 0;
@@ -200,13 +206,24 @@
       margin-bottom: var(--sp1);
     }
 
+    .cover-date {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
     .cover-date-val {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      letter-spacing: 0.05em;
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--ink);
+      opacity: 0.38;
       display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .cover-cta {
@@ -281,10 +298,11 @@
       color: var(--ink-2);
       letter-spacing: 0.01em;
       display: block;
-      /* Slight indent — the answer is quieter than the question */
       padding-left: clamp(0rem, 2vw, 2rem);
       margin-top: clamp(0.5rem, 1.5vw, 1.2rem);
       max-width: var(--max);
+      hyphens: auto;
+      word-break: break-word;
     }
 
     /* ═══════════════════════════════════════════
@@ -294,8 +312,8 @@
        It does not belong in the dark.
     ═══════════════════════════════════════════ */
     .form-section {
-      background: var(--paper);
-      border-top: 1px solid var(--ink-ghost);
+      background: var(--night);
+      border-top: none;
       padding: var(--sp7) var(--m) calc(var(--sp7) * 1.4);
     }
 
@@ -317,7 +335,7 @@
       font-size: clamp(1.8rem, 7vw, 3.2rem);
       line-height: 1.05;
       letter-spacing: -0.015em;
-      color: var(--ink);
+      color: var(--on-night);
       /* No margin-bottom — the subtitle is the second
          half of this sentence, not a separate element */
     }
@@ -329,8 +347,8 @@
       font-size: 0.78rem;
       font-weight: 300;
       letter-spacing: 0.02em;
-      color: var(--ink);
-      opacity: 0.5;
+      color: var(--on-night);
+      opacity: 0.55;
       line-height: 1.65;
       /* Tight to the title — they are one thought */
       margin-top: var(--sp2);
@@ -344,7 +362,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--ink);
+      color: var(--on-night);
       opacity: 0.38;
       display: block;
       margin-bottom: var(--sp1);
@@ -356,8 +374,8 @@
       width: 100%;
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(78,18,18,0.15);
-      color: var(--ink);
+      border-bottom: 1px solid rgba(240,232,208,0.2);
+      color: var(--on-night);
       font-family: var(--serif);
       font-size: 1.1rem;
       font-weight: 300;
@@ -371,17 +389,17 @@
 
     .form-section input[type="text"]::placeholder,
     .form-section textarea::placeholder {
-      color: rgba(78,18,18,0.18);
+      color: rgba(240,232,208,0.2);
       font-style: italic;
     }
 
     .form-section input[type="text"]:focus,
     .form-section textarea:focus {
-      border-bottom-color: rgba(78,18,18,0.5);
+      border-bottom-color: rgba(240,232,208,0.55);
     }
 
     .form-section input[type="text"].err {
-      border-bottom-color: rgba(180,60,60,0.7);
+      border-bottom-color: rgba(220,120,120,0.8);
     }
 
     /* ── Guests header ── */
@@ -392,14 +410,14 @@
       margin-bottom: var(--sp1);
       margin-top: var(--sp6);
       padding-top: var(--sp5);
-      border-top: 1px solid var(--ink-ghost);
+      border-top: 1px solid rgba(240,232,208,0.1);
     }
 
     .guests-hd-title {
       font-family: var(--serif);
       font-weight: 300;
       font-size: clamp(1rem, 3vw, 1.4rem);
-      color: var(--ink);
+      color: var(--on-night);
       letter-spacing: -0.01em;
       line-height: 1.2;
       max-width: 80%;
@@ -410,7 +428,7 @@
       font-size: 0.55rem;
       font-weight: 300;
       font-style: italic;
-      color: var(--ink);
+      color: var(--on-night);
       opacity: 0.38;
       white-space: nowrap;
     }
@@ -420,10 +438,10 @@
 
     .g-block {
       padding: var(--sp3) 0;
-      border-bottom: 1px solid var(--ink-ghost);
+      border-bottom: 1px solid rgba(240,232,208,0.08);
       position: relative;
     }
-    .g-block:first-child { border-top: 1px solid var(--ink-ghost); }
+    .g-block:first-child { border-top: 1px solid rgba(240,232,208,0.08); }
 
     .g-num {
       font-family: var(--sans);
@@ -431,8 +449,8 @@
       font-weight: 400;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--ink);
-      opacity: 0.25;
+      color: var(--on-night);
+      opacity: 0.28;
       margin-bottom: var(--sp2);
       padding-right: 3rem;
     }
@@ -454,13 +472,13 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--ink);
-      opacity: 0.32;
+      color: var(--on-night);
+      opacity: 0.35;
     }
 
     .att-pills {
       display: flex;
-      border: 1px solid rgba(78,18,18,0.15);
+      border: 1px solid rgba(240,232,208,0.18);
       overflow: hidden;
       width: 100%;
     }
@@ -480,11 +498,11 @@
       align-items: center;
       justify-content: center;
       font-family: var(--sans);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(78,18,18,0.28);
+      color: rgba(240,232,208,0.32);
       cursor: pointer;
       transition: background 0.18s, color 0.18s;
       user-select: none;
@@ -492,13 +510,13 @@
     }
 
     .att-pills input:checked + label {
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--on-night);
+      color: var(--night);
       font-weight: 500;
     }
 
     .att-pills input:focus-visible + label {
-      outline: 1px solid var(--ink-dim);
+      outline: 1px solid rgba(240,232,208,0.5);
       outline-offset: -1px;
     }
 
@@ -515,7 +533,7 @@
       justify-content: center;
       background: none;
       border: none;
-      color: rgba(78,18,18,0.18);
+      color: rgba(240,232,208,0.2);
       font-size: 1.1rem;
       cursor: pointer;
       transition: color 0.2s;
@@ -523,20 +541,20 @@
     }
 
     .g-remove:hover,
-    .g-remove:focus-visible { color: var(--ink-dim); outline: none; }
+    .g-remove:focus-visible { color: rgba(240,232,208,0.6); outline: none; }
 
     /* Phantom row — serif italic, same voice as the names above */
     .add-guest {
       width: 100%;
       background: none;
       border: none;
-      border-top: 1px solid var(--ink-ghost);
-      border-bottom: 1px solid var(--ink-ghost);
+      border-top: 1px solid rgba(240,232,208,0.08);
+      border-bottom: 1px solid rgba(240,232,208,0.08);
       font-family: var(--serif);
       font-size: 1.1rem;
       font-weight: 300;
       font-style: italic;
-      color: rgba(78,18,18,0.2);
+      color: rgba(240,232,208,0.22);
       padding: var(--sp3) 0;
       text-align: left;
       cursor: pointer;
@@ -553,7 +571,7 @@
       font-style: normal;
       font-weight: 300;
       font-size: 0.9rem;
-      color: rgba(78,18,18,0.22);
+      color: rgba(240,232,208,0.25);
       transition: color 0.25s;
       flex-shrink: 0;
       line-height: 1;
@@ -561,16 +579,17 @@
 
     .add-guest:hover,
     .add-guest:focus-visible {
-      color: rgba(78,18,18,0.5);
-      border-color: rgba(78,18,18,0.15);
+      color: rgba(240,232,208,0.6);
+      border-color: rgba(240,232,208,0.2);
       outline: none;
     }
 
     .add-guest:hover .add-guest-plus,
-    .add-guest:focus-visible .add-guest-plus { color: rgba(78,18,18,0.5); }
+    .add-guest:focus-visible .add-guest-plus { color: rgba(240,232,208,0.6); }
 
     /* Notes */
     .notes-block { margin-bottom: var(--sp5); }
+
 
     .form-section textarea {
       resize: none;
@@ -582,8 +601,8 @@
        Serious. The irony has been spent. */
     .submit {
       width: 100%;
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--on-night);
+      color: var(--night);
       border: none;
       font-family: var(--sans);
       font-size: 0.62rem;
@@ -597,7 +616,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .submit:hover  { opacity: 0.85; transform: translateY(-1px); }
+    .submit:hover  { background: var(--paper-2); transform: translateY(-1px); }
     .submit:active { transform: translateY(0); }
     .submit:disabled { opacity: 0.28; cursor: not-allowed; transform: none; }
 
@@ -623,7 +642,7 @@
     }
 
     .success.on .success-bird {
-      animation: rise 1.4s var(--out) 0.05s forwards;
+      animation: rise 1.4s var(--out) 0s forwards;
     }
 
     .success-name {
@@ -632,14 +651,14 @@
       font-size: clamp(2.5rem, 11vw, 5.5rem);
       line-height: 0.88;
       letter-spacing: -0.02em;
-      color: var(--ink);
+      color: var(--on-night);
       margin-bottom: var(--sp4);
       white-space: pre-line;
       opacity: 0;
     }
 
     .success.on .success-name {
-      animation: rise 1.2s var(--out) 0.3s forwards;
+      animation: rise 1.2s var(--out) 0.7s forwards;
     }
 
     .success-copy {
@@ -647,14 +666,14 @@
       font-size: 0.75rem;
       font-weight: 300;
       letter-spacing: 0.02em;
-      color: var(--ink);
+      color: var(--on-night);
       opacity: 0;
       line-height: 1.75;
       max-width: 360px;
     }
 
     .success.on .success-copy {
-      animation: riseOpacity 1.2s var(--out) 0.55s forwards;
+      animation: riseOpacity 1.2s var(--out) 1.2s forwards;
     }
 
     /* ═══════════════════════════════════════════
@@ -671,13 +690,88 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      /* align-items: end pushes nav pills to same row */
       gap: var(--sp5) var(--sp4);
-      padding-bottom: var(--sp5);
-      border-bottom: 1px solid var(--ink-ghost);
-      margin-bottom: var(--sp5);
+      padding-bottom: var(--sp4);
+      margin-bottom: 0;
+    }
+
+    .f-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .f-block .f-nav {
+      margin-top: auto;
+      padding-top: var(--sp3);
     }
 
     .f-block { display: flex; flex-direction: column; gap: var(--sp1); }
+
+    .f-eyebrow {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: var(--ink-2);
+      letter-spacing: 0.01em;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .f-nav {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp2);
+      margin-top: var(--sp3);
+    }
+
+
+
+    .f-nav-link {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      width: 100%;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      min-height: 40px;
+      transition: opacity 0.2s, transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .f-nav-link:active { transform: scale(0.97); }
+
+    /* Google Maps pill — cream bg, burgundy border */
+    .f-nav-link--maps {
+      background: var(--paper-2);
+      border-color: rgba(78,18,18,0.2);
+      color: var(--ink);
+    }
+
+    .f-nav-link--maps:hover {
+      background: var(--paper-3);
+      border-color: rgba(78,18,18,0.4);
+    }
+
+    /* Waze pill — burgundy bg, cream text */
+    .f-nav-link--waze {
+      background: var(--ink);
+      border-color: transparent;
+      color: var(--paper);
+    }
+
+    .f-nav-link--waze:hover { opacity: 0.82; }
+
+    .f-nav-link svg { flex-shrink: 0; }
 
     .f-label {
       font-family: var(--sans);
@@ -709,12 +803,7 @@
     }
 
     .footer-base {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: var(--sp3);
+      display: none;
     }
 
     .footer-names {
@@ -729,13 +818,63 @@
       font-family: var(--sans);
       font-size: 0.5rem;
       font-weight: 300;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       color: var(--ink);
       opacity: 0.38;
       text-align: right;
-      line-height: 1.5;
-      max-width: 200px;
+      line-height: 1.6;
+      max-width: 180px;
+      hyphens: auto;
     }
+
+    .footer-contacts {
+      max-width: var(--max);
+      margin: var(--sp4) auto 0;
+      padding-top: var(--sp3);
+      border-top: 1px solid var(--ink-ghost);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp2) var(--sp5);
+    }
+
+    .f-contacts-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: var(--ink-2);
+      letter-spacing: 0.01em;
+      width: 100%;
+      margin-bottom: var(--sp1);
+    }
+
+    .f-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .f-contact-name {
+      font-family: var(--sans);
+      font-size: 0.52rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0.35;
+    }
+
+    .f-contact-num {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+
+    .f-contact-num:hover { opacity: 0.6; }
 
     /* ═══════════════════════════════════════════
        ANIMATIONS
@@ -786,18 +925,12 @@
     </div>
 
     <div class="cover-foot">
-      <div>
-        <span class="cover-date-label" data-pt="23 de outubro de 2026" data-en="October 23rd, 2026">23 de outubro de 2026</span>
-        <span class="cover-date-val">Porto</span>
-      </div>
-      <div class="cover-cta"
-           role="button" tabindex="0"
-           onclick="document.querySelector('.tagline').scrollIntoView({behavior:'smooth'})"
-           onkeydown="if(event.key==='Enter'||event.key===' ')document.querySelector('.tagline').scrollIntoView({behavior:'smooth'})">
-        <span class="cover-cta-label"
-              data-pt="Confirmação de presença"
-              data-en="RSVP">Confirmação de presença</span>
-        <span class="cover-cta-bar" aria-hidden="true"></span>
+      <div class="cover-date">
+        <span class="cover-date-val"
+              data-pt="23 de outubro de 2026 · Porto · Fajozes"
+              data-en="23 de outubro de 2026 · Porto · Fajozes">
+          23 de outubro de 2026 · Porto · Fajozes
+        </span>
       </div>
     </div>
   </section>
@@ -807,11 +940,11 @@
     <!-- Two lines. Two voices. The question and the answer.
          Left-aligned. The design honours the cut. -->
     <span class="tagline-q"
-          data-pt="&ldquo;A vida vai bem. Não vai?&rdquo;"
-          data-en="&ldquo;Life is good, isn&#39;t it?&rdquo;">&ldquo;A vida vai bem. Não vai?&rdquo;</span>
+          data-pt="— A vida vai bem, não vai?"
+          data-en="— Life is good, isn&#39;t it?">— A vida vai bem, não vai?</span>
     <span class="tagline-a"
-          data-pt="Foi assim, tudo dito, numa pergunta simples."
-          data-en="Just like that, everything said, in one simple question.">Foi assim, tudo dito, numa pergunta simples.</span>
+          data-pt="Foi assim, com esta pergunta, que começámos este capítulo."
+          data-en="That was the question that started this whole new chapter.">Foi assim, com esta pergunta, que começámos este capítulo.</span>
   </section>
 
   <!-- ══ FORM ══ -->
@@ -820,14 +953,14 @@
 
       <div id="form-head">
         <h2 class="form-title"
-            data-pt="Há um número que precisamos de saber. Não por desamor — por catering."
-            data-en="There&#39;s a number we need. Not for lack of love — for catering.">
-          Há um número que precisamos de saber. Não por desamor — por catering.
+            data-pt="Há um número que precisamos de saber. O coração dispensa — o catering, não."
+            data-en="There&#39;s a number we need. The heart doesn&#39;t require one. The catering does.">
+          Há um número que precisamos de saber.<br>O coração dispensa — o catering, não.
         </h2>
         <p class="form-punchline"
-           data-pt="Até 31 de julho. É pouco romantismo, mas é necessário — e a tua presença, essa, é o que importa mesmo."
-           data-en="By July 31st. It&#39;s not very romantic, but it&#39;s necessary — and your presence, that&#39;s what really matters.">
-          Até 31 de julho. É pouco romantismo, mas é necessário — e a tua presença, essa, é o que importa mesmo.
+           data-pt="Até 31 de julho — depois disso, estamos a navegar sem instrumentos."
+           data-en="By July 31st — after that, we&#39;re working with guesswork.">
+          Até 31 de julho — depois disso, estamos a navegar sem instrumentos.
         </p>
       </div>
 
@@ -835,13 +968,10 @@
 
         <div class="guests-hd">
           <span class="guests-hd-title"
-                data-pt="Os nomes de quem vem. O teu primeiro, porque foste tu que chegaste até aqui."
-                data-en="The names of who&#39;s coming. Yours first, since you&#39;re the one who made it this far.">
-            Os nomes de quem vem. O teu primeiro, porque foste tu que chegaste até aqui.
+                data-pt="Ora então — quem vamos ter o gosto de receber?"
+                data-en="Right then — who are we having the pleasure of welcoming?">
+            Ora então — quem vamos ter o gosto de receber?
           </span>
-          <span class="guests-hd-hint"
-                data-pt="o teu, primeiro"
-                data-en="yours, first">o teu, primeiro</span>
         </div>
 
         <div class="guests-wrap" id="gwrap"></div>
@@ -849,15 +979,15 @@
         <button type="button" class="add-guest" id="add-btn" onclick="addGuest()">
           <span class="add-guest-plus" aria-hidden="true">+</span>
           <span class="add-guest-label"
-                data-pt="mais alguém, porventura..."
-                data-en="someone else, perhaps...">mais alguém, porventura...</span>
+                data-pt="e os restantes convidados..."
+                data-en="and the other guests...">e os restantes convidados...</span>
         </button>
 
         <div class="notes-block">
           <label class="lbl" for="notes"
-                 data-pt="Se quiseres dizer-nos alguma coisa, estamos a ouvir."
-                 data-en="If you want to tell us something, we&#39;re listening.">
-            Se quiseres dizer-nos alguma coisa, estamos a ouvir.
+                 data-pt="Se quiseres dizer-nos alguma coisa — sobre o casamento, sobre a vida, sobre qualquer coisa — este é o sítio. Lemos tudo. Mesmo tudo."
+                 data-en="If there&#39;s anything you want to tell us — about the wedding, about life, about anything at all — this is the place. We read everything. We mean everything.">
+            Se quiseres dizer-nos alguma coisa — sobre o casamento, sobre a vida, sobre qualquer coisa — este é o sítio. Lemos tudo. Mesmo tudo.
           </label>
           <textarea id="notes" rows="3" placeholder="..."></textarea>
         </div>
@@ -883,24 +1013,59 @@
   <footer class="footer">
     <div class="footer-locs">
       <div class="f-block">
-        <span class="f-label" data-pt="Igreja de Cedofeita, onde começa · 12h30" data-en="Igreja de Cedofeita, where it begins · 12:30">Igreja de Cedofeita, onde começa · 12h30</span>
+        <span class="f-eyebrow" data-pt="onde começa · 13h30" data-en="where it begins · 13:30">onde começa · 13h30</span>
         <span class="f-name">Igreja de Cedofeita</span>
         <span class="f-addr">Porto</span>
+        <div class="f-nav">
+          <a class="f-nav-link f-nav-link--maps" href="https://maps.app.goo.gl/jgwfyrmgyu2hewrm9" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor" opacity="0.9"/>
+              <circle cx="12" cy="9" r="2.5" fill="var(--paper)" opacity="0.95"/>
+            </svg>
+            Google Maps
+          </a>
+          <a class="f-nav-link f-nav-link--waze" href="https://waze.com/ul/hez3f5u467" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor" opacity="0.9"/>
+              <circle cx="12" cy="9" r="2.5" fill="var(--ink)" opacity="0.95"/>
+            </svg>
+            Waze
+          </a>
+        </div>
       </div>
       <div class="f-block">
-        <span class="f-label" data-pt="Quinta Cardeal, onde continua" data-en="Quinta Cardeal, where it continues">Quinta Cardeal, onde continua</span>
+        <span class="f-eyebrow" data-pt="onde continua" data-en="where it continues">onde continua</span>
         <span class="f-name">Quinta Cardeal</span>
         <span class="f-addr">Rua da Igreja<br>4485-079 Fajozes</span>
+        <div class="f-nav">
+          <a class="f-nav-link f-nav-link--maps" href="https://maps.app.goo.gl/fq6REMzn9XpquaBz9" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor" opacity="0.9"/>
+              <circle cx="12" cy="9" r="2.5" fill="var(--paper)" opacity="0.95"/>
+            </svg>
+            Google Maps
+          </a>
+          <a class="f-nav-link f-nav-link--waze" href="https://waze.com/ul/hez3g1fx35" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor" opacity="0.9"/>
+              <circle cx="12" cy="9" r="2.5" fill="var(--ink)" opacity="0.95"/>
+            </svg>
+            Waze
+          </a>
+        </div>
       </div>
     </div>
-    <div class="footer-base">
-      <span class="footer-names">Inês &amp; Rodrigo</span>
-      <span class="footer-deadline"
-            data-pt="até 31 de julho — que é quando precisamos de saber, e a partir de quando ficamos ansiosos"
-            data-en="by July 31st — which is when we need to know, and after which we start worrying">
-        até 31 de julho — que é quando precisamos de saber, e a partir de quando ficamos ansiosos
-      </span>
-    </div>
+    <div class="footer-contacts">
+        <p class="f-contacts-title" data-pt="Os nossos contactos" data-en="Our contacts">Os nossos contactos</p>
+        <div class="f-contact">
+          <span class="f-contact-name">Inês</span>
+          <a class="f-contact-num" href="tel:+351914096497">+351 914 096 497</a>
+        </div>
+        <div class="f-contact">
+          <span class="f-contact-name">Rodrigo</span>
+          <a class="f-contact-num" href="tel:+351911082055">+351 911 082 055</a>
+        </div>
+      </div>
   </footer>
 
   <script>
@@ -924,24 +1089,24 @@
       document.documentElement.lang = l;
       document.querySelectorAll('.g-block').forEach((b, i) => labelBlock(b, i + 1));
       document.querySelectorAll('.gname-inp').forEach(i =>
-        i.placeholder = t('Nome completo...', 'Full name...')
+        i.placeholder = t('Nome e apelido...', 'First and last name...')
       );
       document.querySelectorAll('.gdiet-inp').forEach(i =>
         i.placeholder = t('Vegetariano, alergias...', 'Vegetarian, allergies...')
       );
       const addLbl = document.querySelector('.add-guest-label');
-      if (addLbl) addLbl.textContent = t('mais alguém, porventura...', 'someone else, perhaps...');
+      if (addLbl) addLbl.textContent = t('e os restantes convidados...', 'and the other guests...');
     }
 
     function labelBlock(b, n) {
       const q = s => b.querySelector(s);
       const set = (s, v) => { const el = q(s); if (el) el.textContent = v; };
       set('.g-num',     String(n));
-      set('.gname-lbl', t('Nome completo', 'Full name'));
+      set('.gname-lbl', t('Nome e apelido', 'First and last name'));
       set('.att-lbl',   t('Presença', 'Attending'));
       set('.yes-lbl',   t('Sim', 'Yes'));
       set('.no-lbl',    t('Não', 'No'));
-      set('.gdiet-lbl', t('Restrições alimentares, se as houver — queremos que comas bem.', 'Dietary restrictions, if any — we want you to eat well.'));
+      set('.gdiet-lbl', t('Restrições alimentares, se as houver. Não julgamos — já vimos coisas.', 'Dietary restrictions, if any. We don\'t judge — we\'ve seen things.'));
       const rb = q('.g-remove');
       if (rb) rb.setAttribute('aria-label', t('Remover', 'Remove'));
     }
@@ -982,7 +1147,7 @@
       ni.autocomplete = 'off';
       ni.setAttribute('autocapitalize', 'words');
       ni.setAttribute('inputmode', 'text');
-      ni.placeholder = t('Nome completo...', 'Full name...');
+      ni.placeholder = t('Nome e apelido...', 'First and last name...');
       ng.appendChild(nl); ng.appendChild(ni);
       row.appendChild(ng);
 
@@ -1089,8 +1254,8 @@
           document.getElementById('sname').textContent =
             t(`${firstName}, até já.`, `${firstName}, see you soon.`);
           document.getElementById('scopy').textContent = t(
-            'Fica registado, com genuína alegria da nossa parte. Agora só tens de aparecer — que é, convenhamos, a parte mais fácil.',
-            'Duly noted, with genuine joy on our end. Now you just have to show up — which is, let\'s be honest, the easy part.'
+            'Fica registado, com genuína alegria da nossa parte. A partir daqui só há uma coisa a fazer — aparecer. O resto fica connosco.',
+            'Duly noted, with genuine joy on our end. From here, there\'s only one thing left to do — show up. We\'ll take care of the rest.'
           );
         } else {
           document.getElementById('sname').textContent =
